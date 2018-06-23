@@ -2,7 +2,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/maxrumsey/hookcord/badge.svg?branch=master)](https://coveralls.io/github/maxrumsey/hookcord?branch=master)
 [![Build Status](https://travis-ci.org/maxrumsey/hookcord.svg?branch=master)](https://travis-ci.org/maxrumsey/hookcord)
 [![npm](https://img.shields.io/npm/v/hookcord.svg)](https://npmjs.org/package/hookcord)
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/maxrumsey/hookcord.svg)](https://codeclimate.com/github/maxrumsey/hookcord)
 [![npm](https://img.shields.io/npm/l/hookcord.svg)](https://npmjs.org/package/hookcord)
 [![npm](https://img.shields.io/github/issues/maxrumsey/hookcord.svg)](https://github.com/maxrumsey/hookcord)
 <br><br>
