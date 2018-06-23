@@ -66,4 +66,5 @@ hook.send().then(function(request) {
   console.log(request);
 });
 ```
+Embed documentation is available at [Dicord's Documentation](https://discordapp.com/developers/docs/resources/channel#embed-object).
 More information is available at the [documentation](https://maxrumsey.xyz/hookcord/?api).
