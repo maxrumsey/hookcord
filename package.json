@@ -1,0 +1,44 @@
+{
+  "name": "hookcord",
+  "version": "1.0.0",
+  "description": "A user-friendly, sleek and fast client used to create and send Discord Webhooks.",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "eslint --ignore-path .eslintignore .",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 5000",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "docs": "node docma.js",
+    "view-docs": "node docma.js; docma serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxrumsey/hookcord.git"
+  },
+  "keywords": [
+    "Discord",
+    "API",
+    "Webhook",
+    "Hook"
+  ],
+  "author": "Max Rumsey <max@maxrumsey.xyz> (https://maxrumsey.xyz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxrumsey/hookcord/issues",
+    "email": "bugs@maxrumsey.xyz"
+  },
+  "homepage": "https://maxrumey.xyz/hookcord/",
+  "dependencies": {
+    "snekfetch": "^4.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.1",
+    "docma": "^2.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-mocha": "^5.0.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}

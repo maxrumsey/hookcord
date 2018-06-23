@@ -1,0 +1,73 @@
+
+<html><head></head><body><p><a href="https://david-dm.org/maxrumsey/hookcord"><img src="https://img.shields.io/david/maxrumsey/hookcord.svg" alt="Dependencies" style="max-width: 100%;"></a>
+<a href="https://coveralls.io/github/maxrumsey/hookcord?branch=master"><img src="https://coveralls.io/repos/github/maxrumsey/hookcord/badge.svg?branch=master" alt="Coverage Status" style="max-width: 100%;"></a>
+<a href="https://travis-ci.org/maxrumsey/hookcord"><img src="https://travis-ci.org/maxrumsey/hookcord.svg?branch=master" alt="Build Status" style="max-width: 100%;"></a>
+<a href="https://npmjs.org/package/hookcord"><img src="https://img.shields.io/npm/v/hookcord.svg" alt="npm" style="max-width: 100%;"></a>
+<a href="https://npmjs.org/package/hookcord"><img src="https://img.shields.io/npm/dt/hookcord.svg" alt="npm" style="max-width: 100%;"></a>
+<a href="https://npmjs.org/package/hookcord"><img src="https://img.shields.io/npm/l/hookcord.svg" alt="npm" style="max-width: 100%;"></a>
+<a href="https://github.com/maxrumsey/hookcord"><img src="https://img.shields.io/github/issues/maxrumsey/hookcord.svg" alt="npm" style="max-width: 100%;"></a>
+<br><br>
+<a href="https://nodei.co/npm/hookcord/"><img src="https://nodei.co/npm/hookcord.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="npm" style="max-width: 100%;"></a>
+<br><br></p>
+<h1 id="hookcord">Hookcord</h1>
+<hr />
+<p>A user-friendly, sleek and fast client used to create and send Discord Webhooks.</p>
+<h2 id="features">Features</h2>
+<hr />
+<ul>
+<li>Object-oriented</li>
+<li>Complete coverage of the Discord Webhook API</li>
+<li>Lightweight but powerful</li>
+</ul>
+<p>API Documentation available at <a href="https://maxrumsey.xyz/hookcord">maxrumsey.xyz/hookcord/</a></p>
+<h1 id="usage">Usage</h1>
+<hr />
+<h2 id="installation">Installation</h2>
+<hr />
+<pre><code>$ npm i hookcord
+</code></pre><h2 id="initialisation">Initialisation</h2>
+<hr />
+<pre><code class="lang-javascript">var hookcord = require('hookcord');
+var Base = hookcord.Base;
+var hook = new Base("HOOK_ID/HOOK_SECRET");
+</code></pre>
+<p>Or:</p>
+<pre><code class="lang-javascript">var hookcord = require('hookcord');
+var Base = hookcord.Base;
+var hook = new Base("", {'link':'https://custom.link/to/webhook'});
+</code></pre>
+<h2 id="messages">Messages</h2>
+<hr />
+<pre><code class="lang-javascript">var hookcord = require('hookcord');
+var Base = hookcord.Base;
+
+var hook = new Base("HOOK_ID/HOOK_SECRET", {}, {'content':"Hello World!"});
+hook.send().then(function(request) {
+  console.log(request);
+});
+</code></pre>
+<p>More information is available at the <a href="https://maxrumsey.xyz/hookcord/?api">documentation</a>.</p>
+<h2 id="embeds">Embeds</h2>
+<hr />
+<pre><code class="lang-javascript">var hookcord = require('hookcord');
+
+var Base = hookcord.Base;
+
+var hook = new Base("HOOK_ID/HOOK_SECRET", {}, {
+  'embeds': [{
+    'title': 'Hookcord',
+    'description': '',
+    'fields': [{
+      'name': 'Version',
+      'value': '1.0.0',
+      'inline': true
+    }],
+    'timestamp': new Date();
+  }]
+});
+hook.send().then(function(request) {
+  console.log(request);
+});
+</code></pre>
+<p>More information is available at the <a href="https://maxrumsey.xyz/hookcord/?api">documentation</a>.</p>
+</body></html>
