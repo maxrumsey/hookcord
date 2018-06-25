@@ -12,7 +12,7 @@ try {
 }
 var hookcord = require('../')
 
-/*
+
 describe('Base', function() {
   it('Should successfully send a webhook.', async function() {
     var hook = new hookcord.Base(`${hook_id}/${hook_secret}`, {}, {'content':'Unit Test!'})
@@ -53,7 +53,7 @@ describe('Base', function() {
 
   })
 })
-*/
+
 describe('Fire', function() {
   it('Should return the request body on success.', function(done) {
     hookcord.Fire("", {link: fullLink}, {conbtent: 'unit test'})
@@ -64,6 +64,6 @@ describe('Fire', function() {
         } else {
           assert.ok(false)
       } }
-    ).catch(function(y) {if (y) {assert.ok(false)}})
+    ).catch(function(y) {if (y) {assert.ok(false)} else {done()}})
   })
 })
