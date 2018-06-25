@@ -9,6 +9,10 @@
  */
 
 /**
+ * @typedef {Object} Response
+ * The response returned from the Webhook. See {@link https://snekfetch.js.org/?api=snekfetch#Snekfetch.SnekfetchResponse|Snekfetch Response} for more information.
+ */
+/**
  * The actual Webhook Object
  * @typedef {Object} WebhookJSON
  * @property {string} [content] - The message contents. (Limit 2000 characters). (Only one of content, files and embeds are allowed)
@@ -72,7 +76,7 @@ class Base {
   }
   /**
    * @description POSTS the payload to the endpoint
-   * @returns {this}
+   * @returns {Response}
    * @example
    * const Hook = new Hookcord.Base("CLIENT/SECRET", {}, WEBHOOK)
    * Hook.send()
@@ -82,7 +86,7 @@ class Base {
     var x = 1;
     x = await snekfetch.post(this.endpoint)
       .send(this.payload);
-    return x.body;
+    return x;
   }
 }
 module.exports = Base;
