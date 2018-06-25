@@ -56,7 +56,7 @@ describe('Base', function() {
 
 describe('Fire', function() {
   it('Should return the request body on success.', function(done) {
-    hookcord.Fire("", {link: fullLink}, {conbtent: 'unit test'})
+    hookcord.Fire("", {link: fullLink}, {content: 'unit test'})
     .then(
       function(x) {
         if (x) {
