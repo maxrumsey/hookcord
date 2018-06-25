@@ -3,12 +3,13 @@ const x = {
   'src': [
     './README.md',
     './src/base.js',
+    './src/fire.js',
   ],
   'clean': true,
   'dest': './docs/',
   'app': {
     'title': 'Hookcord Documentation',
-    'base': '/hookcord/',
+    'base': '/hookcord',
     'entrance': 'content:readme',
     'server': Docma.ServerType.GITHUB,
     'routing': 'query',
