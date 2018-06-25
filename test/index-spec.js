@@ -1,5 +1,6 @@
 var assert = require('assert')
 var chai = require('chai')
+var should = require('chai').should()
 var hook_id, hook_secret, fullLink
 try {
   hook_id = require('./auth.json').hook_id;
@@ -47,23 +48,22 @@ describe('Base', function() {
   })
   it('Should return the request body if successful and using the secondary webhook creation option.', async function() {
     var hook = new hookcord.Base(``, {'link':fullLink}, {'content':'Unit Test!'})
-
     var res = await hook.send()
     chai.expect(res).to.exist;
-
   })
 })
 
 describe('Fire', function() {
   it('Should return the request body on success.', function(done) {
-    hookcord.Fire("", {link: fullLink}, {content: 'unit test'})
-    .then(
-      function(x) {
-        if (x) {
+    hookcord.Fire("", {link: fullLink}, {content: 'Unit Test'})
+      .then(
+        function(x) {
+          x.should.be.a('object').and.not.be.a('error')
           done()
-        } else {
-          assert.ok(false)
-      } }
-    ).catch(function(y) {if (y) {assert.ok(false)} else {done()}})
+        }
+      ).catch(function(err) {
+        err.should.not.exist()
+        done()
+      })
   })
 })
