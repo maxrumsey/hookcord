@@ -9,10 +9,10 @@ const snekfetch = require('snekfetch');
  */
 var Fire = async function(link, opts = {}, payload) {
   if (!payload) {
-    return new Error('Payload has not been provided.');
+    throw new Error('Payload has not been provided.');
   }
   if (!(link || opts.link)) {
-    return new Error('Link has not been provided.');
+    throw new Error('Link has not been provided.');
   }
   if (link.split('/').length === 2) {
     link = 'https://discordapp.com/api/webhooks/' + link;
@@ -20,6 +20,7 @@ var Fire = async function(link, opts = {}, payload) {
 
   var res = await snekfetch.post(link || opts.link)
     .send(payload);
+  res.linkurl = link;
   return res;
 };
 

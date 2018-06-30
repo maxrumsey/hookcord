@@ -61,8 +61,28 @@ describe('Fire', function() {
           x.should.be.a('object').and.not.be.a('error')
           done()
         }
-      ).catch(function(err) {
-        err.should.not.exist()
+      )
+  })
+  it('Should throw an error if payload is not provided.', function(done) {
+    hookcord.Fire("", {link: fullLink})
+      .catch(function(err) {
+        chai.expect(err.message).to.equal('Payload has not been provided.')
+        done()
+      })
+  })
+  it('Should throw an error if link is not provided.', function(done) {
+    hookcord.Fire(undefined, undefined, {content:"Unit Test"})
+      .catch(function(err) {
+        chai.expect(err.message).to.equal('Link has not been provided.')
+        done()
+      })
+  })
+  it('Should autocomplete url if only ID and Secret is provided.', function(done) {
+    hookcord.Fire(`${hook_id}/${hook_secret}`, undefined, {content:"Unit Test"})
+      .then(function(res) {
+        link = res.linkurl.split('webhooks/')[0]
+        link = link + 'webhooks/'
+        chai.expect(link).to.equal('https://discordapp.com/api/webhooks/')
         done()
       })
   })
