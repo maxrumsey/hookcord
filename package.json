@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "eslint --ignore-path .eslintignore .",
-    "test": "nyc --reporter=html --reporter=text mocha --timeout 2000",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 5000",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "docs": "node docma.js",
     "view-docs": "node docma.js; docma serve",

@@ -17,6 +17,11 @@ var hookcord = require('../');
  * Unit Tests for ./src/base.js
  */
 describe('Base', function() {
+  beforeEach(function (done) {
+    setTimeout(function(){
+      done();
+    }, 500);
+  });
   it('Should successfully send a webhook.', async function() {
     var hook = new hookcord.Base(`${hook_id}/${hook_secret}`, {}, {'content': 'Unit Test!'});
 
@@ -54,7 +59,11 @@ describe('Base', function() {
     chai.expect(res).to.exist;
   });
   describe('Ratelimit', function() {
-
+    beforeEach(function (done) {
+      setTimeout(function(){
+        done();
+      }, 500);
+    });
     it('Should correctly insert the statuscode.', function(done) {
       var statuscode = 222;
       var hook = new hookcord.Base('', {link: fullLink, _statcode: statuscode}, {content: 'Unit Test'});
@@ -96,6 +105,11 @@ describe('Base', function() {
  * Unit Tests for ./src/fire.js
  */
 describe('Fire', function() {
+  beforeEach(function (done) {
+    setTimeout(function(){
+      done();
+    }, 500);
+  });
   it('Should return the request body on success.', function(done) {
     hookcord.Fire('', {link: fullLink}, {content: 'Unit Test'})
       .then(
