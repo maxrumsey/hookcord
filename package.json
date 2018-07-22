@@ -18,7 +18,8 @@
     "Discord",
     "API",
     "Webhook",
-    "Hook"
+    "Hook",
+    "Ratelimit"
   ],
   "author": "Max Rumsey <max@maxrumsey.xyz> (https://maxrumsey.xyz)",
   "license": "MIT",
