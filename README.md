@@ -68,5 +68,20 @@ hook.send().then(function(request) {
 Embed documentation is available at [Discord's Documentation](https://discordapp.com/developers/docs/resources/channel#embed-object).
 More information is available at the [Hookcord documentation](https://maxrumsey.xyz/hookcord/?api).
 
-# License
-MIT
+## Ratelimits
+By default, Hookcord will throw an error if it encounters a ratelimit. You can override this by setting a handler function like this:
+```javascript
+var Base = require('hookcord').Base;
+var hook = new Base("HOOK_ID/HOOK_SECRET", {
+  handler: function(err) {
+    console.log('Ratelimit Request Limit: ' + err.limit);
+    console.log('Remaining Requests: ' + err.remaining);
+    console.log('Time until Reset: ' + err.reset)
+  }
+}, {
+  content: 'Hello World!'
+})
+```
+It provides the remaining requests allowed (0), the total requests permitted (usually 5) and the time until the Ratelimit resets.
+
+More information is available at the [Hookcord documentation](https://maxrumsey.xyz/hookcord/?api).

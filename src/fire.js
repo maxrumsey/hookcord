@@ -1,4 +1,5 @@
 const snekfetch = require('snekfetch');
+const util = require('./util');
 /**
  * A function that fires Webhooks. Basically the function version of {@link Base}.
  * @name Fire
@@ -17,9 +18,22 @@ var Fire = async function(link, opts = {}, payload) {
   if (link.split('/').length === 2) {
     link = 'https://discordapp.com/api/webhooks/' + link;
   }
-
-  var res = await snekfetch.post(link || opts.link)
-    .send(payload);
+  var res;
+  try {
+    res = await snekfetch.post(link || opts.link)
+      .send(payload);
+  } catch (e) {
+    res = e;
+    if (e.statusCode !== 429 && !opts._statcode) {
+      throw new Error(e.statusCode);
+    }
+  }
+  if (opts._statcode) {
+    res.statusCode = opts._statcode;
+  }
+  if (res.statusCode === 429) {
+    res._utiloutput = util.handleRatelimit(opts.handler, res);
+  }
   res.linkurl = link;
   return res;
 };

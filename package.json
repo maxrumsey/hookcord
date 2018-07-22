@@ -1,11 +1,11 @@
 {
   "name": "hookcord",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A user-friendly, sleek and fast client used to create and send Discord Webhooks.",
   "main": "index.js",
   "scripts": {
     "pretest": "eslint --ignore-path .eslintignore .",
-    "test": "nyc --reporter=html --reporter=text mocha --timeout 50000",
+    "test": "nyc --reporter=html --reporter=text mocha --timeout 2000",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "docs": "node docma.js",
     "view-docs": "node docma.js; docma serve",

@@ -1,10 +1,17 @@
+const util = require('./util');
 /**
  * The options passed to the Webhook constructor
  * @typedef {Object} WebhookOptions
  * @property {string} [link] - Override the location the Webhook is POSTed to.
+ * @property {function} [handler] - The Ratelimit Handler
  * @example
  * {
- *   'link':'https://discordapp.com/path/to/Webhook/'
+ *   'link':'https://discordapp.com/path/to/Webhook/',
+ *    handler: function(err) {
+ *      console.log('Ratelimit Request Limit: ' + err.limit);
+ *      console.log('Remaining Requests: ' + err.remaining);
+ *      console.log('Time until Reset: ' + err.reset)
+ *    }
  * }
  */
 
@@ -39,8 +46,6 @@
  * var Base = require('hookcord').Base
  */
 class Base {
-
-
   /**
    * @param {string} [Code] Webhook ID + Secret in the form of <code>"HOOK_ID/HOOK_SECRET"</code>. Either `link` or `Options.link` is required
    * @param {WebhookOptions} [Options] Options to initialise the Webhook with
@@ -63,6 +68,7 @@ class Base {
     } else {
       throw new Error('No link is present to POST to.');
     }
+    this.handler = opts.handler;
     /**
      * @type {WebhookJSON}
      * @description Webhook payload
@@ -83,10 +89,28 @@ class Base {
    */
   async send() {
     const snekfetch = require('snekfetch');
-    var x = 1;
-    x = await snekfetch.post(this.endpoint)
-      .send(this.payload);
-    return x;
+    var res, _utiloutput;
+    try {
+      res = await snekfetch.post(this.endpoint)
+        .send(this.payload);
+
+    } catch (e) {
+      res = e;
+      if (this.opts._statcode) {
+        res.statusCode = this.opts._statcode;
+      }
+      if (res.statusCode !== 429) {
+        throw new Error(e.statusCode);
+      }
+    }
+    if (this.opts._statcode) {
+      res.statusCode = this.opts._statcode;
+    }
+    if (res.statusCode === 429) {
+      _utiloutput = util.handleRatelimit(this.opts.handler, res);
+    }
+    res._utiloutput = _utiloutput;
+    return res;
   }
 }
 module.exports = Base;
