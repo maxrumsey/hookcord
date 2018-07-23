@@ -18,8 +18,9 @@ API Documentation available at [maxrumsey.xyz/hookcord/](https://maxrumsey.xyz/h
 # Usage
 ## Installation
 ```
-$ npm i hookcord
+$ npm i hookcord --production
 ```
+By using the `--production` flag it ensures that the documentation generator and other development related tools are not installed.
 ## Initialisation
 ```javascript
 var hookcord = require('hookcord');
