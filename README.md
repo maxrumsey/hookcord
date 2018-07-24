@@ -75,9 +75,9 @@ By default, Hookcord will throw an error if it encounters a ratelimit. You can o
 var Base = require('hookcord').Base;
 var hook = new Base("HOOK_ID/HOOK_SECRET", {
   handler: function(err) {
-    console.log('Ratelimit Request Limit: ' + err.limit);
-    console.log('Remaining Requests: ' + err.remaining);
-    console.log('Time until Reset: ' + err.reset)
+    console.log('Ratelimit Request Limit: ' + err.limit); // 5
+    console.log('Remaining Requests: ' + err.remaining); // 0
+    console.log('Time until Reset: ' + err.reset) // 12093103
   }
 }, {
   content: 'Hello World!'

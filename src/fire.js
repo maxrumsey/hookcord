@@ -6,7 +6,7 @@ const util = require('./util');
  * @param {string} Link - The details or link the Webhook will fire to.
  * @param {WebhookOptions} [Options] - Custom options.
  * @param {WebhookJSON} Payload - The payload that will be fired to the link.
- * @returns {Response}
+ * @returns {Promise<Response>}
  */
 var Fire = async function(link, opts = {}, payload) {
   if (!payload) {
@@ -24,13 +24,23 @@ var Fire = async function(link, opts = {}, payload) {
       .send(payload);
   } catch (e) {
     res = e;
+    /*
+     * If a custom status code is not defined and it is not a ratelimit related error it will throw
+     * a generic error with the message based upon the HTTP error code.
+     */
     if (e.statusCode !== 429 && !opts._statcode) {
       throw new Error(e.statusCode);
     }
   }
+  /*
+   * Overwrites the status code if a custom one is set.
+   */
   if (opts._statcode) {
     res.statusCode = opts._statcode;
   }
+  /*
+   * Decides whether or not to activate the ratelimit handler
+   */
   if (res.statusCode === 429) {
     res._utiloutput = util.handleRatelimit(opts.handler, res);
   }

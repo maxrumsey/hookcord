@@ -23,8 +23,9 @@
 <hr />
 <h2 id="installation">Installation</h2>
 <hr />
-<pre><code>$ npm i hookcord
-</code></pre><h2 id="initialisation">Initialisation</h2>
+<pre><code>$ npm i hookcord --production
+</code></pre><p>By using the <code>--production</code> flag it ensures that the documentation generator and other development related tools are not installed.</p>
+<h2 id="initialisation">Initialisation</h2>
 <hr />
 <pre><code class="lang-javascript">var hookcord = require('hookcord');
 var Base = hookcord.Base;
@@ -76,9 +77,9 @@ More information is available at the <a href="https://maxrumsey.xyz/hookcord/?ap
 <pre><code class="lang-javascript">var Base = require('hookcord').Base;
 var hook = new Base("HOOK_ID/HOOK_SECRET", {
   handler: function(err) {
-    console.log('Ratelimit Request Limit: ' + err.limit);
-    console.log('Remaining Requests: ' + err.remaining);
-    console.log('Time until Reset: ' + err.reset)
+    console.log('Ratelimit Request Limit: ' + err.limit); // 5
+    console.log('Remaining Requests: ' + err.remaining); // 0
+    console.log('Time until Reset: ' + err.reset) // 12093103
   }
 }, {
   content: 'Hello World!'

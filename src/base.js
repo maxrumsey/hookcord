@@ -82,7 +82,7 @@ class Base {
   }
   /**
    * @description POSTS the payload to the endpoint
-   * @returns {Response}
+   * @returns {Promise<Response>}
    * @example
    * const Hook = new Hookcord.Base("CLIENT/SECRET", {}, WEBHOOK)
    * Hook.send()
@@ -106,6 +106,9 @@ class Base {
     if (this.opts._statcode) {
       res.statusCode = this.opts._statcode;
     }
+    /*
+     * If the status code is equal to 429 it activates the handler.
+     */
     if (res.statusCode === 429) {
       _utiloutput = util.handleRatelimit(this.opts.handler, res);
     }
