@@ -4,8 +4,9 @@
 [![npm](https://img.shields.io/npm/v/hookcord.svg)](https://npmjs.org/package/hookcord)
 [![npm](https://img.shields.io/npm/l/hookcord.svg)](https://npmjs.org/package/hookcord)
 [![npm](https://img.shields.io/github/issues/maxrumsey/hookcord.svg)](https://github.com/maxrumsey/hookcord)
+[![Greenkeeper badge](https://badges.greenkeeper.io/maxrumsey/hookcord.svg)](https://greenkeeper.io/)
 <br><br>
-[![npm](https://nodei.co/npm/hookcord.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hookcord/) [![Greenkeeper badge](https://badges.greenkeeper.io/maxrumsey/hookcord.svg)](https://greenkeeper.io/)
+[![npm](https://nodei.co/npm/hookcord.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hookcord/) 
 <br><br>
 # Hookcord
 A user-friendly, sleek and fast client used to create and send Discord Webhooks.
