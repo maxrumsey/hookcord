@@ -1,3 +1,4 @@
+[![Discord](https://img.shields.io/discord/447417117403512843.svg)](https://discord.gg/PyEecVA)
 [![Dependencies](https://img.shields.io/david/maxrumsey/hookcord.svg)](https://david-dm.org/maxrumsey/hookcord)
 [![Coverage Status](https://coveralls.io/repos/github/maxrumsey/hookcord/badge.svg?branch=master)](https://coveralls.io/github/maxrumsey/hookcord?branch=master)
 [![Build Status](https://travis-ci.org/maxrumsey/hookcord.svg?branch=master)](https://travis-ci.org/maxrumsey/hookcord)
