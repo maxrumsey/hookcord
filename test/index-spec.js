@@ -229,5 +229,16 @@ describe('Discord.JS Embed Parser', function() {
       var finalEmbed = hookcord.DiscordJS(e)
       assert.equal(finalEmbed.file, undefined)
     })
+    it('Should not console.log if no embed.file is present.', function() {
+      var e = new RichEmbed()
+      e.setAuthor('Unit Test')
+      e.setTitle('Unit Test')
+      e.setColor(84328)
+      e.addField('Unit Test', 'true')
+      logInterceptor();
+      hookcord.DiscordJS(e)
+      const logs = logInterceptor.end();
+      assert.equal(logs[0], undefined)
+    })
   })
 })
