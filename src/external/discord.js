@@ -4,14 +4,14 @@
  */
 function DiscordJS(embed) {
   if (embed.file) {
-    console.warn('Files in embeds will not be sent.');
+    console.log('Files in embeds will not be sent.');
     embed.file = undefined;
   }
   return {
     'embeds': [
-      embed
-    ]
-  }
+      embed,
+    ],
+  };
 }
 
 module.exports = DiscordJS;
