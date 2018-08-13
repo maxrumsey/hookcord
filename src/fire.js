@@ -2,13 +2,12 @@ const snekfetch = require('snekfetch');
 const util = require('./util');
 /**
  * A function that fires Webhooks. Basically the function version of {@link Base}.
- * @name Fire
  * @param {string} Link - The details or link the Webhook will fire to.
  * @param {WebhookOptions} [Options] - Custom options.
  * @param {WebhookJSON} Payload - The payload that will be fired to the link.
  * @returns {Response}
  */
-var Fire = async function(link, opts = {}, payload) {
+async function Fire(link, opts = {}, payload) {
   if (!payload) {
     throw new Error('Payload has not been provided.');
   }
