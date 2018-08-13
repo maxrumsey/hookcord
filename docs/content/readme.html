@@ -86,4 +86,20 @@ var hook = new Base("HOOK_ID/HOOK_SECRET", {
 </code></pre>
 <p>It provides the remaining requests allowed (0), the total requests permitted (usually 5) and the time until the Ratelimit resets.</p>
 <p>More information is available at the <a href="https://maxrumsey.xyz/hookcord/?api">Hookcord documentation</a>.</p>
+<h2 id="parsing-discordjs-embeds">Parsing Discord.JS Embeds</h2>
+<hr />
+<p>Hookcord has the ability to parse embeds created via <a href="https://discord.js.org/#/docs/main/stable/class/RichEmbed">Discord.JS's RichEmbed</a>. These parsed embeds can be sent via Hookcord as a Webhook.</p>
+<pre><code class="lang-javascript">var hookcord = require('hookcord');
+var discord = require('discord.js')
+
+var embed = new discord.RichEmbed();
+embed.setTitle('Hi!');
+var parsed = hookcord.DiscordJS(embed);
+
+await hookcord.Fire("HOOK_ID/HOOK_SECRET", {}, parsed);
+</code></pre>
+<p>If you attempt to parse a file, the file will be removed and the incident will be logged to console.</p>
+<h2 id="contributing">Contributing</h2>
+<hr />
+<p>If you wish to contribute, feel free to open a pull request on the <a href="https://github.com/maxrumsey/hookcord">GitHub Repository</a>! Also, make sure to join our <a href="https://discord.gg/PyEecVA">Discord Server</a>!</p>
 </body></html>

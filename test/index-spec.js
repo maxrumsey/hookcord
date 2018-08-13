@@ -1,5 +1,7 @@
 var assert = require('assert');
 var chai = require('chai');
+const logInterceptor = require('log-interceptor');
+const RichEmbed = require('discord.js').RichEmbed;
 var should = require('chai').should();
 var hook_id, hook_secret, fullLink;
 try {
@@ -200,5 +202,43 @@ describe('Ratelimit Handler', function() {
         chai.expect(x).to.exist.and.be.a('error')
         done()
       })
+  })
+})
+
+describe('Discord.JS Embed Parser', function() {
+  describe('embed.file', function() {
+    it('Should console.log if a embed.file is present.', function() {
+      var e = new RichEmbed()
+      e.setAuthor('Unit Test')
+      e.setTitle('Unit Test')
+      e.setColor(84328)
+      e.addField('Unit Test', 'true')
+      e.file = true;
+      logInterceptor();
+      hookcord.DiscordJS(e)
+      const logs = logInterceptor.end();
+      assert.equal(logs[0], 'Files in embeds will not be sent.\n')
+    })
+    it('Should cancel out any files.', function() {
+      var e = new RichEmbed()
+      e.setAuthor('Unit Test')
+      e.setTitle('Unit Test')
+      e.setColor(84328)
+      e.addField('Unit Test', 'true')
+      e.file = true;
+      var finalEmbed = hookcord.DiscordJS(e)
+      assert.equal(finalEmbed.file, undefined)
+    })
+    it('Should not console.log if no embed.file is present.', function() {
+      var e = new RichEmbed()
+      e.setAuthor('Unit Test')
+      e.setTitle('Unit Test')
+      e.setColor(84328)
+      e.addField('Unit Test', 'true')
+      logInterceptor();
+      hookcord.DiscordJS(e)
+      const logs = logInterceptor.end();
+      assert.equal(logs[0], undefined)
+    })
   })
 })

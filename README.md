@@ -21,9 +21,8 @@ API Documentation available at [maxrumsey.xyz/hookcord/](https://maxrumsey.xyz/h
 # Usage
 ## Installation
 ```
-$ npm i hookcord --production
+$ npm i hookcord
 ```
-By using the `--production` flag it ensures that the documentation generator and other development related tools are not installed.
 ## Initialisation
 ```javascript
 var hookcord = require('hookcord');
@@ -89,3 +88,20 @@ var hook = new Base("HOOK_ID/HOOK_SECRET", {
 It provides the remaining requests allowed (0), the total requests permitted (usually 5) and the time until the Ratelimit resets.
 
 More information is available at the [Hookcord documentation](https://maxrumsey.xyz/hookcord/?api).
+
+## Parsing Discord.JS Embeds
+Hookcord has the ability to parse embeds created via [Discord.JS's RichEmbed](https://discord.js.org/#/docs/main/stable/class/RichEmbed). These parsed embeds can be sent via Hookcord as a Webhook.
+```javascript
+var hookcord = require('hookcord');
+var discord = require('discord.js')
+
+var embed = new discord.RichEmbed();
+embed.setTitle('Hi!');
+var parsed = hookcord.DiscordJS(embed);
+
+await hookcord.Fire("HOOK_ID/HOOK_SECRET", {}, parsed);
+```
+If you attempt to parse a file, the file will be removed and the incident will be logged to console.
+
+## Contributing
+If you wish to contribute, feel free to open a pull request on the [GitHub Repository](https://github.com/maxrumsey/hookcord)! Also, make sure to join our [Discord Server](https://discord.gg/PyEecVA)!
