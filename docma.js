@@ -4,6 +4,7 @@ const x = {
     './README.md',
     './src/base.js',
     './src/fire.js',
+    './src/external/discord.js'
   ],
   'clean': true,
   'dest': './docs/',
