@@ -1,11 +1,14 @@
+[![Discord](https://img.shields.io/discord/447417117403512843.svg)](https://discord.gg/PyEecVA)
 [![Dependencies](https://img.shields.io/david/maxrumsey/hookcord.svg)](https://david-dm.org/maxrumsey/hookcord)
 [![Coverage Status](https://coveralls.io/repos/github/maxrumsey/hookcord/badge.svg?branch=master)](https://coveralls.io/github/maxrumsey/hookcord?branch=master)
 [![Build Status](https://travis-ci.org/maxrumsey/hookcord.svg?branch=master)](https://travis-ci.org/maxrumsey/hookcord)
 [![npm](https://img.shields.io/npm/v/hookcord.svg)](https://npmjs.org/package/hookcord)
 [![npm](https://img.shields.io/npm/l/hookcord.svg)](https://npmjs.org/package/hookcord)
 [![npm](https://img.shields.io/github/issues/maxrumsey/hookcord.svg)](https://github.com/maxrumsey/hookcord)
+[![Greenkeeper badge](https://badges.greenkeeper.io/maxrumsey/hookcord.svg)](https://greenkeeper.io/)
+[![install size](https://packagephobia.now.sh/badge?p=hookcord@1.2.1)](https://packagephobia.now.sh/result?p=hookcord@1.2.1)
 <br><br>
-[![npm](https://nodei.co/npm/hookcord.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hookcord/)
+[![npm](https://nodei.co/npm/hookcord.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hookcord/) 
 <br><br>
 # Hookcord
 A user-friendly, sleek and fast client used to create and send Discord Webhooks.
