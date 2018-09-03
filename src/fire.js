@@ -24,7 +24,7 @@ async function Fire(link, opts = {}, payload) {
   } catch (e) {
     res = e;
     if (e.statusCode !== 429 && !opts._statcode) {
-      throw new Error(e.statusCode);
+      throw e;
     }
   }
   if (opts._statcode) {

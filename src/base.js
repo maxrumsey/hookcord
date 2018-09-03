@@ -100,7 +100,7 @@ class Base {
         res.statusCode = this.opts._statcode;
       }
       if (res.statusCode !== 429) {
-        throw new Error(e.statusCode);
+        throw e;
       }
     }
     if (this.opts._statcode) {
