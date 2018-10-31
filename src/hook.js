@@ -28,6 +28,7 @@ class Hook {
       this.endpoint = this.link;
     }
     this.handler = opts.handler;
+    return this;
   }
   /**
    * Sets the payload sent to the endpoint.
@@ -35,12 +36,14 @@ class Hook {
    */
   setPayload(payload) {
     this.payload = payload;
+    return this;
   }
   /**
    * Sets a custom link that the Webhook will be sent to. Use {@link Hook#login} if using a Discord Webhook.
    */
   setLink(link) {
     this.endpoint = link;
+    return this;
   }
   /**
    * Creates the endpoint the Webhook will be sent to.
@@ -49,6 +52,7 @@ class Hook {
    */
   login(username, secret) {
     this.endpoint = `https://discordapp.com/api/webhooks/${username}/${secret}`;
+    return this;
   }
   /**
    * Sends the Webhook to the endpoint.
