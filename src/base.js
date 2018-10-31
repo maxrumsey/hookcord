@@ -42,6 +42,7 @@ const util = require('./util');
  */
 /**
  * The base Webhook class.
+ * @deprecated since version 2.0.0
  * @example
  * var Base = require('hookcord').Base
  */

@@ -6,6 +6,7 @@ const util = require('./util');
  * @param {WebhookOptions} [Options] - Custom options.
  * @param {WebhookJSON} Payload - The payload that will be fired to the link.
  * @returns {Response}
+ * @deprecated since version 2.0.0
  */
 async function Fire(link, opts = {}, payload) {
   if (!payload) {

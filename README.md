@@ -8,7 +8,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/maxrumsey/hookcord.svg)](https://greenkeeper.io/)
 [![install size](https://packagephobia.now.sh/badge?p=hookcord@1.2.1)](https://packagephobia.now.sh/result?p=hookcord@1.2.1)
 <br><br>
-[![npm](https://nodei.co/npm/hookcord.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hookcord/) 
+[![npm](https://nodei.co/npm/hookcord.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/hookcord/)
 <br><br>
 # Hookcord
 A user-friendly, sleek and fast client used to create and send Discord Webhooks.
@@ -26,34 +26,42 @@ $ npm i hookcord
 ## Initialisation
 ```javascript
 var hookcord = require('hookcord');
-var Base = hookcord.Base;
-var hook = new Base("HOOK_ID/HOOK_SECRET");
+var Hook = new hookcord.Hook()
+  .login('ID', 'SECRET')
+  .setPayload(payload)
+  .fire()
+  .then(function(response) {})
+  .catch(function(e) {})
 ```
 Or:
 ```javascript
 var hookcord = require('hookcord');
-var Base = hookcord.Base;
-var hook = new Base("", {'link':'https://custom.link/to/webhook'});
+var Hook = new hookcord.Hook()
+  .setLink('https://abc.com/webhook')
+  .setPayload(payload)
+  .fire()
+  .then(function(response) {})
+  .catch(function(e) {})
 ```
 ## Messages
 ```javascript
 var hookcord = require('hookcord');
-var Base = hookcord.Base;
-
-var hook = new Base("HOOK_ID/HOOK_SECRET", {}, {'content':"Hello World!"});
-hook.send().then(function(request) {
-  console.log(request);
-});
+var Hook = new hookcord.Hook()
+  .login('ID', 'SECRET')
+  .setPayload({
+    'content': 'This displays like a normal message.'
+  })
+  .fire()
+  .then(function(response) {})
+  .catch(function(e) {})
 ```
 More information is available at the [documentation](https://maxrumsey.xyz/hookcord/?api).
 ## Embeds
 ```javascript
 var hookcord = require('hookcord');
-
-var Base = hookcord.Base;
-
-var hook = new Base("HOOK_ID/HOOK_SECRET", {}, {
-  'embeds': [{
+var Hook = new hookcord.Hook()
+  .login('ID', 'SECRET')
+  .setPayload({'embeds': [{ // .setPayload(hookcord.DiscordJS(embed))
     'title': 'Hookcord',
     'description': '',
     'fields': [{
@@ -62,11 +70,10 @@ var hook = new Base("HOOK_ID/HOOK_SECRET", {}, {
       'inline': true
     }],
     'timestamp': new Date();
-  }]
-});
-hook.send().then(function(request) {
-  console.log(request);
-});
+  }]})
+  .fire()
+  .then(function(response) {})
+  .catch(function(e) {})
 ```
 Embed documentation is available at [Discord's Documentation](https://discordapp.com/developers/docs/resources/channel#embed-object).
 More information is available at the [Hookcord documentation](https://maxrumsey.xyz/hookcord/?api).
@@ -74,16 +81,18 @@ More information is available at the [Hookcord documentation](https://maxrumsey.
 ## Ratelimits
 By default, Hookcord will throw an error if it encounters a ratelimit. You can override this by setting a handler function like this:
 ```javascript
-var Base = require('hookcord').Base;
-var hook = new Base("HOOK_ID/HOOK_SECRET", {
-  handler: function(err) {
-    console.log('Ratelimit Request Limit: ' + err.limit);
-    console.log('Remaining Requests: ' + err.remaining);
-    console.log('Time until Reset: ' + err.reset)
-  }
-}, {
-  content: 'Hello World!'
-})
+var hookcord = require('hookcord');
+var Hook = new hookcord.Hook()
+  .login('ID', 'SECRET')
+  .setOptions({
+    handler: function(err) {
+      console.log('Ratelimit Request Limit: ' + err.limit);
+      console.log('Remaining Requests: ' + err.remaining);
+      console.log('Time until Reset: ' + err.reset)
+    }
+  })
+  .setPayload({ contents: ':)' })
+  .fire()
 ```
 It provides the remaining requests allowed (0), the total requests permitted (usually 5) and the time until the Ratelimit resets.
 
@@ -93,13 +102,12 @@ More information is available at the [Hookcord documentation](https://maxrumsey.
 Hookcord has the ability to parse embeds created via [Discord.JS's RichEmbed](https://discord.js.org/#/docs/main/stable/class/RichEmbed). These parsed embeds can be sent via Hookcord as a Webhook.
 ```javascript
 var hookcord = require('hookcord');
-var discord = require('discord.js')
-
-var embed = new discord.RichEmbed();
-embed.setTitle('Hi!');
-var parsed = hookcord.DiscordJS(embed);
-
-await hookcord.Fire("HOOK_ID/HOOK_SECRET", {}, parsed);
+var Hook = new hookcord.Hook()
+  .login('ID', 'SECRET')
+  .setPayload(hookcord.DiscordJS(embed))
+  .fire()
+  .then(function(response) {})
+  .catch(function(e) {})
 ```
 If you attempt to parse a file, the file will be removed and the incident will be logged to console.
 
