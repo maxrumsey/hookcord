@@ -242,3 +242,135 @@ describe('Discord.JS Embed Parser', function() {
     })
   })
 })
+
+describe('Hook Class', function() {
+  describe('Sending WebHooks', function() {
+    it('Should set the status code in a non-error.', function(done) {
+      let hook = new hookcord.Hook();
+      hook.setOptions({
+        _statcode: 299
+      })
+      hook.login(hook_id, hook_secret);
+      hook.setPayload({
+        content: ':)'
+      })
+      hook.fire()
+        .then(function(res) {
+          chai.expect(res.statusCode).to.equal(299);
+          return done();
+        })
+        .catch(function(e) {
+          console.log(e);
+          throw e;
+        })
+    })
+    it('Should set the status code in a non-error a.', function(done) {
+      let hook = new hookcord.Hook();
+      hook.setOptions({
+        _statcode: 429,
+        handler: function() {}
+      })
+      hook.login(hook_id, hook_secret);
+      hook.setPayload({
+        contebnt: ':)'
+      })
+      hook.fire()
+        .then(function(res) {
+          chai.expect(res.statusCode).to.equal(429);
+          return done();
+        })
+        .catch(function(e) {
+          console.log(e);
+          throw e;
+        })
+    })
+    it('Should activate the ratelimit handler.', function(done) {
+      let hook = new hookcord.Hook();
+      hook.setOptions({
+        _statcode: 429,
+        handler: function() {}
+      })
+      hook.login(hook_id, hook_secret);
+      hook.setPayload({
+        content: ':)'
+      })
+      hook.fire()
+        .then(function(res) {
+          chai.expect(res._utiloutput).to.exist;
+          return done();
+        })
+        .catch(function(e) {
+          console.log(e);
+          throw e;
+        })
+    })
+    it('Should throw a non-ratelimit error.', function(done) {
+      let hook = new hookcord.Hook();
+      hook.login(hook_id, hook_secret);
+      hook.setPayload({
+        ben: 'shapiro'
+      })
+      hook.setOptions({
+        _statcode: 444,
+      })
+      hook.fire()
+        .catch(function(e) {
+          chai.expect(e).to.be.an('error');
+          return done();
+        })
+    })
+  })
+  describe('Initialisation', function() {
+    it('Should correctly set the link if set via opts', function() {
+      let hook = new hookcord.Hook();
+      let link = 'https://whats.updog.com'
+      hook.setOptions({
+        link: link
+      })
+      chai.expect(hook.link).to.equal(link);
+      chai.expect(hook.endpoint).to.equal(hook.link);
+    })
+    it('Should correctly set the link if set via setLink()', function() {
+      let hook = new hookcord.Hook();
+      let link = 'https://whats.updog.com'
+      hook.setLink(link)
+      chai.expect(hook.endpoint).to.equal(link);
+    })
+    it('Should throw an error if no endpoint was provided', function() {
+      let hook = new hookcord.Hook();
+      hook.endpoint = undefined;
+      hook.payload = {content: 12};
+      hook.fire()
+        .catch(function(e) {
+          chai.expect(e).to.an('error');
+          chai.expect(e.message).to.equal('Endpoint has not been provided.')
+        })
+    })
+    it('Should throw an error if no payload was provided.', function() {
+      let hook = new hookcord.Hook();
+      hook.endpoint = 'link';
+      hook.payload = undefined;
+      hook.fire()
+        .catch(function(e) {
+          chai.expect(e).to.an('error');
+          chai.expect(e.message).to.equal('Payload has not been provided.')
+        })
+    })
+    it('Should set res.statusCode', function(done) {
+      let hook = new hookcord.Hook();
+      hook.login(hook_id, hook_secret);
+      hook.setPayload({contwent: 'w'})
+      hook.setOptions({
+        _statcode: 429,
+        handler: function() {}
+      })
+      hook.opts._statcode = 429;
+      hook.fire()
+        .then(function(res) {
+          chai.expect(res.statusCode).to.equal(429);
+          done()
+        })
+    })
+
+  })
+})

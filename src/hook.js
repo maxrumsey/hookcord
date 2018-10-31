@@ -6,7 +6,7 @@ const util = require('./util');
  * var myWebhook = new Hook;
  * myWebhook.login('Top', 'Secret');
  * myWebhook.setPayload(myPayload);
- * myWebhook.send()
+ * myWebhook.fire()
  *     .then(function(res) {
  *         console.log('Webhook sent!');
  *     })
@@ -40,6 +40,7 @@ class Hook {
   }
   /**
    * Sets a custom link that the Webhook will be sent to. Use {@link Hook#login} if using a Discord Webhook.
+   * @param {string} Link
    */
   setLink(link) {
     this.endpoint = link;
