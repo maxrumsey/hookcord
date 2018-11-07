@@ -58,7 +58,7 @@ class Base {
    * new Base("", {'link': 'https://discordapp.com/api/webhooks/ID/SECRET'}, {'content':'Hello World!'})
    */
   constructor(link, opts = {}, preload = undefined) {
-    console.warn('This class has been deprecated. Use the Hook class instead. More information: maxrumsey.xyz/hookcord/')
+    console.warn('This class has been deprecated. Use the Hook class instead. More information: maxrumsey.xyz/hookcord/');
     if (opts.link) {
       /**
        * @type {string}
