@@ -5,6 +5,7 @@ const x = {
     './src/base.js',
     './src/fire.js',
     './src/external/discord.js',
+    './src/hook.js',
   ],
   'clean': true,
   'dest': './docs/',

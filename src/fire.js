@@ -6,8 +6,10 @@ const util = require('./util');
  * @param {WebhookOptions} [Options] - Custom options.
  * @param {WebhookJSON} Payload - The payload that will be fired to the link.
  * @returns {Response}
+ * @deprecated since version 2.0.0
  */
 async function Fire(link, opts = {}, payload) {
+  console.warn('This function has been deprecated and will be removed in a future version. Use the Hook class instead. More information: maxrumsey.xyz/hookcord/');
   if (!payload) {
     throw new Error('Payload has not been provided.');
   }

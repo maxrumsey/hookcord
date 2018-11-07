@@ -42,6 +42,7 @@ const util = require('./util');
  */
 /**
  * The base Webhook class.
+ * @deprecated since version 2.0.0
  * @example
  * var Base = require('hookcord').Base
  */
@@ -57,6 +58,7 @@ class Base {
    * new Base("", {'link': 'https://discordapp.com/api/webhooks/ID/SECRET'}, {'content':'Hello World!'})
    */
   constructor(link, opts = {}, preload = undefined) {
+    console.warn('This class has been deprecated. Use the Hook class instead. More information: maxrumsey.xyz/hookcord/');
     if (opts.link) {
       /**
        * @type {string}

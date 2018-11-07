@@ -3,9 +3,12 @@
  * @returns {WebhookJSON}
  * @param {Object} DiscordJSEmbed The {@link https://discord.js.org/#/docs/main/stable/class/RichEmbed|Discord.JS Embed} to pass into the parser.
  * @example
- * var embed = new Discord.RichEmbed();
+ * var embed = new require('discord.js').RichEmbed();
  * embed.setTitle('Hello!')
- * hookcord.Fire("HOOK ID/HOOK SECRET", {}, hookcord.DiscordJS(embed))
+ * let hook = new hookcord.Hook();
+ * hook.login('ID', 'SECRET')
+ *  .setPayload(hookcord.DiscordJS(embed));
+ *  .fire()
  */
 function DiscordJS(embed) {
   if (embed.file) {
