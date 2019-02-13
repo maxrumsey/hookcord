@@ -1,6 +1,6 @@
 {
   "name": "hookcord",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A user-friendly, sleek and fast client used to create and send Discord Webhooks.",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "url": "https://github.com/maxrumsey/hookcord/issues",
     "email": "bugs@maxrumsey.xyz"
   },
-  "homepage": "https://maxrumey.xyz/hookcord/",
+  "homepage": "https://maxrumsey.xyz/hookcord/",
   "dependencies": {
     "snekfetch": "^4.0.2"
   },
