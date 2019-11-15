@@ -15,7 +15,9 @@ const util = require('./util');
  *     })
  */
 class Hook {
-  constructor() {};
+  constructor() {
+    this.opts = {};
+  };
   /**
    * Sets options used by the Webhook.
    * @param {WebhookOptions} Options Options that the Webhook is initialised with.
