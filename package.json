@@ -37,7 +37,7 @@
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "docma": "^3.0.0",
-    "discord.js": "^11.4.0",
+    "discord.js": "^12.1.0",
     "eslint": "^5.2.0",
     "eslint-config-strongloop": "^2.1.0",
     "eslint-plugin-mocha": "^6.0.0",
